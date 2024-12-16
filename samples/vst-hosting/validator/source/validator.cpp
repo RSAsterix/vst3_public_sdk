@@ -289,7 +289,11 @@ void PLUGIN_API Validator::addErrorMessage (const tchar* msg)
 {
 	if (errorStream)
 	{
+		#ifdef UNICODE
 		auto str = StringConvert::convert (msg);
+		#else
+		auto str = msg;
+		#endif
 		if (addErrorWarningTextToOutput)
 			*errorStream << "ERROR: " << str << "\n";
 		else
@@ -302,7 +306,11 @@ void PLUGIN_API Validator::addMessage (const tchar* msg)
 {
 	if (infoStream)
 	{
+		#ifdef UNICODE
 		auto str = StringConvert::convert (msg);
+		#else
+		auto str = msg;
+		#endif
 		if (addErrorWarningTextToOutput)
 			*infoStream << "Info:  " << str << "\n";
 		else
@@ -765,7 +773,11 @@ void Validator::runTestSuite (TestSuite* suite, FIDString nameFilter)
 					*infoStream << "[" << name;
 					if (auto desc = testItem->getDescription ())
 					{
+						#ifdef UNICODE
 						auto descStr = StringConvert::convert (desc);
+						#else
+						const std::string& descStr = desc;
+						#endif
 						if (!descStr.empty ())
 							*infoStream << ": " << descStr;
 					}

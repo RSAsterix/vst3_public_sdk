@@ -99,11 +99,11 @@ ModuleInitializer HostAttributeListTests ([] () {
 	});
 	registerTest (TestSuiteName, STR ("String"), [] (ITestResult* testResult) {
 		auto attrList = HostAttributeList::make ();
-		constexpr const TChar* testValue = STR ("TestValue");
+		constexpr const TChar* testValue = STR16 ("TestValue");
 		EXPECT_EQ (attrList->setString ("Str", testValue), kResultTrue);
 		TChar value[10];
 		EXPECT_EQ (attrList->getString ("Str", value, 10 * sizeof (TChar)), kResultTrue);
-		EXPECT_EQ (tstrcmp (testValue, value), 0);
+		EXPECT_EQ (strcmp16 (testValue, value), 0);
 		return true;
 	});
 	registerTest (TestSuiteName, STR ("Binary"), [] (ITestResult* testResult) {
