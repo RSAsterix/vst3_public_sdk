@@ -56,15 +56,12 @@ bool PLUGIN_API BusActivationTest::run (ITestResult* testResult)
 
 	printTestHeader (testResult);
 
-	int32 numTotalBusses = 0;
 	int32 numFailedActivations = 0;
 
 	for (MediaType type = kAudio; type < kNumMediaTypes; type++)
 	{
 		int32 numInputs = vstPlug->getBusCount (type, kInput);
 		int32 numOutputs = vstPlug->getBusCount (type, kOutput);
-
-		numTotalBusses += (numInputs + numOutputs);
 
 		for (int32 i = 0; i < numInputs + numOutputs; ++i)
 		{

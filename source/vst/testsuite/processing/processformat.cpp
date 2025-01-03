@@ -60,7 +60,6 @@ bool PLUGIN_API ProcessFormatTest::run (ITestResult* testResult)
 
 	printTestHeader (testResult);
 
-	int32 numFails = 0;
 	const int32 numRates = 12;
 	SampleRate sampleRateFormats[numRates] = {22050.,    32000.,    44100.,    48000.,
 	                                          88200.,    96000.,    192000.,   384000.,
@@ -99,7 +98,6 @@ bool PLUGIN_API ProcessFormatTest::run (ITestResult* testResult)
 			}
 			else
 			{
-				numFails++;
 				addErrorMessage (testResult,
 				                 printf (" %10.10G Hz - failed to process!", sampleRateFormats[i]));
 			}
