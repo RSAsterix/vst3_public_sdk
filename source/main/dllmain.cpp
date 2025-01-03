@@ -39,6 +39,7 @@
 #include "pluginterfaces/base/fstrdefs.h"
 
 #include <windows.h>
+#include <tchar.h>
 
 #if defined(_MSC_VER) && defined(DEVELOPMENT)
 #include <crtdbg.h>
@@ -104,9 +105,9 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwReason, LPVOID /*lpvReserved*/)
 		moduleHandle = ghInst = hInst;
 
 		// gets the path of the component
-		if (GetModuleFileName (ghInst, Steinberg::wscast (gPath), MAX_PATH) > 0)
+		if (GetModuleFileName (ghInst, Steinberg::_tcast(gPath), MAX_PATH) > 0)
 		{
-			Steinberg::tchar* bkslash = Steinberg::wscast (wcsrchr (Steinberg::wscast (gPath), L'\\'));
+			Steinberg::tchar* bkslash = Steinberg::_tcast(_tcsrchr (Steinberg::_tcast(gPath), _T('\\')));
 			if (bkslash)
 				gPath[bkslash - gPath + 1] = 0;
 		}
